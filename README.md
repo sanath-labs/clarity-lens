@@ -7,3 +7,6 @@ An AI-assisted critical thinking tool. ClarityLens breaks down text or personal 
 
 ## Setup
 Coming soon.
+
+## Status Update — Day 4
+Input validation added (empty/whitespace/symbol-only checks) and sentence display formatting polished with dividers.
