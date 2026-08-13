@@ -1,4 +1,7 @@
-﻿from flag_detector import detect_absolute_language, detect_emotional_language
+﻿import sys
+import os
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+from flag_detector import detect_absolute_language, detect_emotional_language, detect_missing_source, analyze_sentence
 
 def test_absolute_language():
     result = detect_absolute_language("Everyone knows this is guaranteed to work.")
@@ -14,8 +17,20 @@ def test_no_flags():
     result = detect_absolute_language("The meeting starts at 3pm.")
     assert result == []
 
+def test_missing_source():
+    assert detect_missing_source("Studies show it improves results by 300%.") == True
+    assert detect_missing_source("According to a 2023 study, results improved by 300%.") == False
+
+def test_analyze_sentence_combined():
+    result = analyze_sentence("Everyone knows this outrageous claim is proven.")
+    assert "everyone" in result["absolute_language"]
+    assert "outrageous" in result["emotional_language"]
+    assert result["sentence"] == "Everyone knows this outrageous claim is proven."
+
 if __name__ == "__main__":
     test_absolute_language()
     test_emotional_language()
     test_no_flags()
+    test_missing_source()
+    test_analyze_sentence_combined()
     print("All flag detector tests passed.")
