@@ -10,3 +10,6 @@ Coming soon.
 
 ## Status Update — Day 4
 Input validation added (empty/whitespace/symbol-only checks) and sentence display formatting polished with dividers.
+
+## Status Update â€” Day 5
+Basic rule-based flag detection implemented (absolute language, emotional language) with unit tests.
