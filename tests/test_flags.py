@@ -1,4 +1,4 @@
-from flag_detector import detect_absolute_language, detect_emotional_language
+﻿from flag_detector import detect_absolute_language, detect_emotional_language
 
 def test_absolute_language():
     result = detect_absolute_language("Everyone knows this is guaranteed to work.")
