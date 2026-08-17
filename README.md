@@ -13,3 +13,7 @@ Input validation added (empty/whitespace/symbol-only checks) and sentence displa
 
 ## Status Update — Day 5
 Basic rule-based flag detection implemented (absolute language, emotional language) with unit tests.
+
+## Status Update - Day 5 (extended)
+Added missing-source heuristic and combined all flag detectors into a single analyze_sentence function. Verified against sample dataset, including a noted false-positive edge case for future tuning.
+
