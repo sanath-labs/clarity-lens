@@ -7,14 +7,14 @@ def format_sentence_with_flags(sentence, flags):
 
     if flags.get("absolute_language"):
         words = ", ".join(flags["absolute_language"])
-        badges.append("<span style='background-color:#ffcccc;padding:2px 6px;border-radius:4px;margin-right:4px;'>Absolute: " + words + "</span>")
+        badges.append("<span style='background-color:#ffcccc;padding:2px 6px;border-radius:4px;margin-right:6px;display:inline-block;margin-bottom:4px;'>Absolute: " + words + "</span>")
 
     if flags.get("emotional_language"):
         words = ", ".join(flags["emotional_language"])
-        badges.append("<span style='background-color:#ffe4b3;padding:2px 6px;border-radius:4px;margin-right:4px;'>Emotional: " + words + "</span>")
+        badges.append("<span style='background-color:#ffe4b3;padding:2px 6px;border-radius:4px;margin-right:6px;display:inline-block;margin-bottom:4px;'>Emotional: " + words + "</span>")
 
     if flags.get("missing_source"):
-        badges.append("<span style='background-color:#cce5ff;padding:2px 6px;border-radius:4px;margin-right:4px;'>Missing source</span>")
+        badges.append("<span style='background-color:#cce5ff;padding:2px 6px;border-radius:4px;margin-right:6px;display:inline-block;margin-bottom:4px;'>Missing source</span>")
 
     if badges:
         badges_html = "".join(badges)
