@@ -25,3 +25,7 @@ Flag detection is now wired into the Streamlit UI with color-coded badges (red f
 ## Status Update - Day 6
 Flag detection is now wired into the Streamlit UI with color-coded badges (red for absolute language, orange for emotional language, blue for missing source). Includes a legend explaining each flag type.
 
+
+## Status Update - Day 6
+Flag detection is now wired into the Streamlit UI with color-coded badges (red for absolute language, orange for emotional language, blue for missing source). Includes a legend explaining each flag type.
+
