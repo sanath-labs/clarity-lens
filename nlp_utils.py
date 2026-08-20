@@ -1,13 +1,21 @@
 from nltk.tokenize import sent_tokenize
 
-def split_sentences(text):
-    """Splits input text into a list of individual sentences."""
+
+def split_sentences(text: str) -> list:
+    """
+    Splits input text into a list of individual sentences using NLTK.
+    Returns an empty list if input is empty or whitespace-only.
+    """
     if not text or not text.strip():
         return []
     return sent_tokenize(text.strip())
 
-def is_valid_input(text):
-    """Returns False for empty, whitespace-only, or punctuation-only text."""
+
+def is_valid_input(text: str) -> bool:
+    """
+    Returns False for empty, whitespace-only, or punctuation/symbol-only text.
+    Returns True if the text contains at least one alphanumeric character.
+    """
     if not text or not text.strip():
         return False
     return any(c.isalnum() for c in text)
