@@ -30,3 +30,7 @@ Added missing-source heuristic and combined all flag detectors into a single ana
 
 ### Day 6
 Flag detection is now wired into the Streamlit UI with color-coded badges (red for absolute language, orange for emotional language, blue for missing source). Includes a legend explaining each flag type.
+
+### Day 7
+Cleaned up code with docstrings and type hints across flag_detector.py and nlp_utils.py. Validated flag detector against an expanded 8-sentence test dataset (7/8 correct).
+
