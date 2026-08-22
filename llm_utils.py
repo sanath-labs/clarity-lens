@@ -25,3 +25,23 @@ def get_neutral_summary(text: str) -> str:
         return response.choices[0].message.content
     except Exception as e:
         return "Could not generate summary (API error: " + str(e) + ")"
+
+
+def get_steelman_argument(text: str) -> str:
+    """
+    Uses an LLM to generate the strongest possible opposing viewpoint
+    to the given claim, argued fairly and rigorously.
+    """
+    try:
+        response = client.chat.completions.create(
+            model="llama-3.1-8b-instant",
+            messages=[
+                {
+                    "role": "user",
+                    "content": "Generate the strongest possible opposing viewpoint to the following claim, argued fairly and rigorously in 2-3 sentences:\n\n" + text
+                }
+            ]
+        )
+        return response.choices[0].message.content
+    except Exception as e:
+        return "Could not generate opposing viewpoint (API error: " + str(e) + ")"
