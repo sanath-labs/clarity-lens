@@ -34,3 +34,7 @@ Flag detection is now wired into the Streamlit UI with color-coded badges (red f
 ### Day 7
 Cleaned up code with docstrings and type hints across flag_detector.py and nlp_utils.py. Validated flag detector against an expanded 8-sentence test dataset (7/8 correct).
 
+
+### Day 8
+Added llm_utils.py with functions for neutral summary and steelman argument generation using the Groq API (llama-3.1-8b-instant model). Includes unit tests that verify graceful error handling when the API key is not yet configured.
+
