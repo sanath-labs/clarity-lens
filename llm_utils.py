@@ -4,7 +4,8 @@ from groq import Groq
 
 load_dotenv()
 
-client = Groq(api_key=os.environ.get("GROQ_API_KEY"))
+api_key = os.environ.get("GROQ_API_KEY")
+client = Groq(api_key=api_key) if api_key else None
 
 
 def get_neutral_summary(text: str) -> str:
@@ -12,6 +13,8 @@ def get_neutral_summary(text: str) -> str:
     Uses an LLM to generate a neutral, non-emotional 2-sentence summary
     of the given text, stripping out loaded or biased language.
     """
+    if not client:
+        return "AI summary unavailable: no API key configured yet."
     try:
         response = client.chat.completions.create(
             model="llama-3.1-8b-instant",
@@ -32,6 +35,8 @@ def get_steelman_argument(text: str) -> str:
     Uses an LLM to generate the strongest possible opposing viewpoint
     to the given claim, argued fairly and rigorously.
     """
+    if not client:
+        return "AI opposing viewpoint unavailable: no API key configured yet."
     try:
         response = client.chat.completions.create(
             model="llama-3.1-8b-instant",
