@@ -38,3 +38,7 @@ Cleaned up code with docstrings and type hints across flag_detector.py and nlp_u
 ### Day 8
 Added llm_utils.py with functions for neutral summary and steelman argument generation using the Groq API (llama-3.1-8b-instant model). Includes unit tests that verify graceful error handling when the API key is not yet configured.
 
+
+### Day 9
+Wired LLM summary and steelman functions into the main UI. Added graceful fallback messaging when no API key is configured yet, so the app remains fully demoable even before the key is set up. Added corresponding unit test.
+
