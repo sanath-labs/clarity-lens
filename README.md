@@ -42,3 +42,7 @@ Added llm_utils.py with functions for neutral summary and steelman argument gene
 ### Day 9
 Wired LLM summary and steelman functions into the main UI. Added graceful fallback messaging when no API key is configured yet, so the app remains fully demoable even before the key is set up. Added corresponding unit test.
 
+
+### Day 10
+Ran full test suite via pytest - all 14 tests passing across flag detection, input validation, LLM fallback behavior, and end-to-end pipeline. Added GitHub Actions CI workflow to automatically run tests on every push.
+
