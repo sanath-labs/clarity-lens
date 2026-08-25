@@ -46,3 +46,7 @@ Wired LLM summary and steelman functions into the main UI. Added graceful fallba
 ### Day 10
 Ran full test suite via pytest - all 14 tests passing across flag detection, input validation, LLM fallback behavior, and end-to-end pipeline. Added GitHub Actions CI workflow to automatically run tests on every push.
 
+
+### Day 11
+Added SQLite database layer (database.py) with init_db, save_analysis, and get_all_analyses functions. Wired into the app with a new History tab showing all past analyses in expandable cards. Verified the database file is correctly excluded from version control via .gitignore.
+
