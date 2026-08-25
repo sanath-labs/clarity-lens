@@ -23,3 +23,18 @@ def init_db():
     """)
     conn.commit()
     conn.close()
+
+
+def save_analysis(input_text: str, flags: list, summary: str, steelman: str) -> None:
+    """
+    Saves a completed analysis (input text, per-sentence flags, LLM summary,
+    and LLM steelman argument) to the database with a timestamp.
+    """
+    conn = sqlite3.connect(DB_PATH)
+    cursor = conn.cursor()
+    cursor.execute(
+        "INSERT INTO analyses (input_text, timestamp, flags_json, summary, steelman) VALUES (?, ?, ?, ?, ?)",
+        (input_text, datetime.now().isoformat(), json.dumps(flags), summary, steelman)
+    )
+    conn.commit()
+    conn.close()
