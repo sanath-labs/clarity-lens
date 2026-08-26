@@ -21,3 +21,9 @@ if __name__ == "__main__":
     test_returns_string_on_missing_key()
     test_friendly_message_without_key()
     print("All LLM utility tests passed.")
+
+def test_socratic_questions_function():
+    from llm_utils import get_socratic_questions
+    assert callable(get_socratic_questions)
+    result = get_socratic_questions("Should I take this job?")
+    assert isinstance(result, str)
