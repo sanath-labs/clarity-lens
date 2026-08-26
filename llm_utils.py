@@ -50,3 +50,26 @@ def get_steelman_argument(text: str) -> str:
         return response.choices[0].message.content
     except Exception as e:
         return "Could not generate opposing viewpoint (API error: " + str(e) + ")"
+
+
+def get_socratic_questions(decision_text: str) -> str:
+    """
+    Uses an LLM to generate 3-4 Socratic follow-up questions that help the
+    user examine their own decision-making reasoning, rather than giving
+    them a direct answer or verdict.
+    """
+    if not client:
+        return "AI questions unavailable: no API key configured yet."
+    try:
+        response = client.chat.completions.create(
+            model="llama-3.1-8b-instant",
+            messages=[
+                {
+                    "role": "user",
+                    "content": "The user is describing a personal decision they are weighing. Do not tell them what to do. Instead, ask 3-4 thoughtful Socratic questions that help them examine their own reasoning, assumptions, and blind spots. Keep each question short.\n\nTheir decision:\n" + decision_text
+                }
+            ]
+        )
+        return response.choices[0].message.content
+    except Exception as e:
+        return "Could not generate questions (API error: " + str(e) + ")"
