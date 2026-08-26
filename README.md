@@ -50,3 +50,7 @@ Ran full test suite via pytest - all 14 tests passing across flag detection, inp
 ### Day 11
 Added SQLite database layer (database.py) with init_db, save_analysis, and get_all_analyses functions. Wired into the app with a new History tab showing all past analyses in expandable cards. Verified the database file is correctly excluded from version control via .gitignore.
 
+
+### Day 12
+Added Personal Decision Mode - users can now switch between analyzing external text and describing their own decision, receiving Socratic follow-up questions instead of a verdict. Added corresponding unit test. Full suite now at 15/15 tests passing.
+
