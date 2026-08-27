@@ -60,3 +60,5 @@ Added Personal Decision Mode - users can now switch between analyzing external t
 - Added input sufficiency validation for decision prompts.
 - Added test suite for decision mode (`tests/test_decision_mode.py`).
 - Added history clearing capabilities in database layer.
+
+- Day 13 completed: Decision Mode & Tests.
