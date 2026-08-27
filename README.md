@@ -54,3 +54,9 @@ Added SQLite database layer (database.py) with init_db, save_analysis, and get_a
 ### Day 12
 Added Personal Decision Mode - users can now switch between analyzing external text and describing their own decision, receiving Socratic follow-up questions instead of a verdict. Added corresponding unit test. Full suite now at 15/15 tests passing.
 
+
+## Day 13 Progress
+- Added Personal Decision Mode with Socratic questioning.
+- Added input sufficiency validation for decision prompts.
+- Added test suite for decision mode (`tests/test_decision_mode.py`).
+- Added history clearing capabilities in database layer.
