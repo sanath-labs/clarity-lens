@@ -63,3 +63,12 @@ def get_all_analyses() -> list:
             "steelman": row[5],
         })
     return results
+
+def clear_all_analyses():
+    """Clears all records from the analyses table."""
+    import sqlite3
+    conn = sqlite3.connect("clarity_history.db")
+    cursor = conn.cursor()
+    cursor.execute("DELETE FROM analyses")
+    conn.commit()
+    conn.close()
