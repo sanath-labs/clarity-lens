@@ -64,10 +64,14 @@ def get_all_analyses() -> list:
         })
     return results
 
-def clear_all_analyses():
-    """Clears all records from the analyses table."""
-    import sqlite3
-    conn = sqlite3.connect("clarity_history.db")
+
+def clear_all_analyses() -> None:
+    """
+    Clears all records from the analyses table. Uses the same DB_PATH
+    as the rest of this module (previously pointed at a different,
+    unused database file due to a copy-paste bug).
+    """
+    conn = sqlite3.connect(DB_PATH)
     cursor = conn.cursor()
     cursor.execute("DELETE FROM analyses")
     conn.commit()
