@@ -35,3 +35,11 @@ if __name__ == "__main__":
     test_full_pipeline_on_samples()
     test_empty_input_handled()
     print("All end-to-end tests passed.")
+
+def test_clear_all_analyses():
+    from database import init_db, save_analysis, get_all_analyses, clear_all_analyses
+    init_db()
+    save_analysis("Temp test entry.", [], "summary", "steelman")
+    assert len(get_all_analyses()) > 0
+    clear_all_analyses()
+    assert len(get_all_analyses()) == 0
