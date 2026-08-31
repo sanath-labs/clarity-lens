@@ -62,3 +62,7 @@ Added Personal Decision Mode - users can now switch between analyzing external t
 - Added history clearing capabilities in database layer.
 
 - Day 13 completed: Decision Mode & Tests.
+
+### Day 14
+Fixed a database path bug in clear_all_analyses (was pointing at an unused database file). Added a Clear History button in the UI with a confirmation checkbox to prevent accidental deletion. Full test suite now at 19/19 passing.
+
