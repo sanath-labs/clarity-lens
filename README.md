@@ -66,3 +66,7 @@ Added Personal Decision Mode - users can now switch between analyzing external t
 ### Day 14
 Fixed a database path bug in clear_all_analyses (was pointing at an unused database file). Added a Clear History button in the UI with a confirmation checkbox to prevent accidental deletion. Full test suite now at 19/19 passing.
 
+
+### Day 15
+Fixed the missing-source false positive for negated citations, added a regression test, and marked the known issue as resolved. Added a Download History as CSV button to the History tab.
+
