@@ -146,3 +146,38 @@ def search_analyses(keyword: str) -> list:
             "steelman": row[5],
         })
     return results
+
+def delete_analysis(analysis_id: int) -> None:
+    """
+    Deletes a single analysis record by its id.
+    """
+    conn = sqlite3.connect(DB_PATH)
+    cursor = conn.cursor()
+    cursor.execute("DELETE FROM analyses WHERE id = ?", (analysis_id,))
+    conn.commit()
+    conn.close()
+
+def search_analyses(keyword: str) -> list:
+    """
+    Returns all analyses whose input_text contains the given keyword
+    (case-insensitive), most recent first.
+    """
+    conn = sqlite3.connect(DB_PATH)
+    cursor = conn.cursor()
+    cursor.execute(
+        "SELECT id, input_text, timestamp, flags_json, summary, steelman FROM analyses WHERE input_text LIKE ? ORDER BY timestamp DESC",
+        ("%" + keyword + "%",)
+    )
+    rows = cursor.fetchall()
+    conn.close()
+    results = []
+    for row in rows:
+        results.append({
+            "id": row[0],
+            "input_text": row[1],
+            "timestamp": row[2],
+            "flags": json.loads(row[3]) if row[3] else [],
+            "summary": row[4],
+            "steelman": row[5],
+        })
+    return results
