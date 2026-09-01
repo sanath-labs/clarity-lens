@@ -5,7 +5,7 @@ from nlp_utils import split_sentences, is_valid_input, is_sufficient_for_decisio
 from flag_detector import analyze_sentence
 from ui_helpers import format_sentence_with_flags
 from llm_utils import get_neutral_summary, get_steelman_argument, get_socratic_questions
-from database import init_db, save_analysis, get_all_analyses, clear_all_analyses
+from database import init_db, save_analysis, get_all_analyses, clear_all_analyses, delete_analysis, search_analyses
 
 init_db()
 
@@ -64,30 +64,37 @@ with tab1:
 
 with tab2:
     st.subheader("Past Analyses")
-    history = get_all_analyses()
+    search_term = st.text_input("Search history:", placeholder="Type a keyword...")
+    if search_term.strip():
+        history = search_analyses(search_term.strip())
+    else:
+        history = get_all_analyses()
+
     if not history:
-        st.write("No analyses saved yet. Run an analysis in the Analyze tab first.")
+        st.write("No analyses found.")
     else:
         for item in history:
             with st.expander(item["input_text"][:80] + "..." if len(item["input_text"]) > 80 else item["input_text"]):
                 st.write("**Timestamp:** " + item["timestamp"])
                 st.write("**Summary:** " + str(item["summary"]))
                 st.write("**Opposing Viewpoint / Questions:** " + str(item["steelman"]))
-        
-        st.divider()
+                if st.button("Delete this entry", key="delete_" + str(item["id"])):
+                    delete_analysis(item["id"])
+                    st.rerun()
+
         csv_buffer = io.StringIO()
         writer = csv.writer(csv_buffer)
         writer.writerow(["Timestamp", "Input Text", "Summary", "Opposing Viewpoint / Questions"])
         for item in history:
             writer.writerow([item["timestamp"], item["input_text"], item["summary"], item["steelman"]])
-        
+
         st.download_button(
             label="Download History as CSV",
             data=csv_buffer.getvalue(),
             file_name="clarity_lens_history.csv",
             mime="text/csv"
         )
-        
+
         st.divider()
         confirm_clear = st.checkbox("I understand this will permanently delete all saved history.")
         if st.button("Clear History", disabled=not confirm_clear):
