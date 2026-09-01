@@ -34,3 +34,6 @@ if __name__ == "__main__":
     test_missing_source()
     test_analyze_sentence_combined()
     print("All flag detector tests passed.")
+def test_missing_source_negated_citation():
+    result = detect_missing_source("Studies show huge gains, though no source is cited.")
+    assert result == True
