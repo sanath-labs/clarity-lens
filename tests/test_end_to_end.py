@@ -43,3 +43,21 @@ def test_clear_all_analyses():
     assert len(get_all_analyses()) > 0
     clear_all_analyses()
     assert len(get_all_analyses()) == 0
+
+def test_delete_analysis():
+    from database import init_db, save_analysis, get_all_analyses, delete_analysis
+    init_db()
+    save_analysis("Delete me test entry.", [], "summary", "steelman")
+    results = get_all_analyses()
+    target_id = results[0]["id"]
+    delete_analysis(target_id)
+    remaining_ids = [r["id"] for r in get_all_analyses()]
+    assert target_id not in remaining_ids
+
+def test_search_analyses():
+    from database import init_db, save_analysis, search_analyses
+    init_db()
+    save_analysis("Unique searchable phrase xyz123.", [], "summary", "steelman")
+    results = search_analyses("xyz123")
+    assert len(results) >= 1
+    assert "xyz123" in results[0]["input_text"]
