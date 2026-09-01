@@ -20,3 +20,7 @@ Tested against 8 sample sentences covering absolute language, emotional language
 ## Full Test Suite Results (Day 10)
 Ran complete test suite via pytest: 14/14 tests passed across test_flags.py, test_llm_utils.py, test_validation.py, and test_end_to_end.py. Covers flag detection accuracy, input validation edge cases, LLM function fallback behavior, and the full sentence-split-to-flag pipeline against the sample dataset.
 
+
+## Resolved (Day 15)
+The missing-source false positive for negated citations (e.g. 'no source is cited') has been fixed. The detector now checks for negation words within 15 characters before a source-attribution word before treating it as a real citation.
+
