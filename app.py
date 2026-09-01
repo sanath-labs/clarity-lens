@@ -1,4 +1,6 @@
 import streamlit as st
+import csv
+import io
 from nlp_utils import split_sentences, is_valid_input, is_sufficient_for_decision
 from flag_detector import analyze_sentence
 from ui_helpers import format_sentence_with_flags
@@ -71,6 +73,21 @@ with tab2:
                 st.write("**Timestamp:** " + item["timestamp"])
                 st.write("**Summary:** " + str(item["summary"]))
                 st.write("**Opposing Viewpoint / Questions:** " + str(item["steelman"]))
+        
+        st.divider()
+        csv_buffer = io.StringIO()
+        writer = csv.writer(csv_buffer)
+        writer.writerow(["Timestamp", "Input Text", "Summary", "Opposing Viewpoint / Questions"])
+        for item in history:
+            writer.writerow([item["timestamp"], item["input_text"], item["summary"], item["steelman"]])
+        
+        st.download_button(
+            label="Download History as CSV",
+            data=csv_buffer.getvalue(),
+            file_name="clarity_lens_history.csv",
+            mime="text/csv"
+        )
+        
         st.divider()
         confirm_clear = st.checkbox("I understand this will permanently delete all saved history.")
         if st.button("Clear History", disabled=not confirm_clear):
