@@ -70,3 +70,7 @@ Fixed a database path bug in clear_all_analyses (was pointing at an unused datab
 ### Day 15
 Fixed the missing-source false positive for negated citations, added a regression test, and marked the known issue as resolved. Added a Download History as CSV button to the History tab.
 
+
+### Day 15
+Fixed the missing-source false positive for negated citations, added a regression test, and marked the known issue as resolved. Added a Download History as CSV button to the History tab.
+
