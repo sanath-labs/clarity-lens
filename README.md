@@ -74,3 +74,7 @@ Fixed the missing-source false positive for negated citations, added a regressio
 ### Day 15
 Fixed the missing-source false positive for negated citations, added a regression test, and marked the known issue as resolved. Added a Download History as CSV button to the History tab.
 
+
+### Day 16
+Added search functionality and per-entry delete buttons to the History tab, backed by new search_analyses and delete_analysis database functions with unit tests.
+
