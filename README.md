@@ -78,3 +78,7 @@ Fixed the missing-source false positive for negated citations, added a regressio
 ### Day 16
 Added search functionality and per-entry delete buttons to the History tab, backed by new search_analyses and delete_analysis database functions with unit tests.
 
+
+### Day 17
+Implemented dynamic sort ordering (newest/oldest) and multi-filter querying in the database layer and History tab, with comprehensive unit tests.
+
