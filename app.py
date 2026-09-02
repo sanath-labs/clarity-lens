@@ -5,7 +5,7 @@ from nlp_utils import split_sentences, is_valid_input, is_sufficient_for_decisio
 from flag_detector import analyze_sentence
 from ui_helpers import format_sentence_with_flags
 from llm_utils import get_neutral_summary, get_steelman_argument, get_socratic_questions
-from database import init_db, save_analysis, get_all_analyses, clear_all_analyses, delete_analysis, search_analyses
+from database import init_db, save_analysis, get_all_analyses, clear_all_analyses, delete_analysis, search_analyses, get_analyses_filtered
 
 init_db()
 
@@ -64,15 +64,20 @@ with tab1:
 
 with tab2:
     st.subheader("Past Analyses")
-    search_term = st.text_input("Search history:", placeholder="Type a keyword...")
-    if search_term.strip():
-        history = search_analyses(search_term.strip())
-    else:
-        history = get_all_analyses()
+    
+    col1, col2 = st.columns([3, 1])
+    with col1:
+        search_term = st.text_input("Search history:", placeholder="Type a keyword...")
+    with col2:
+        sort_choice = st.selectbox("Sort by:", ["Newest first", "Oldest first"])
+        sort_order = "DESC" if sort_choice == "Newest first" else "ASC"
+
+    history = get_analyses_filtered(keyword=search_term, sort_order=sort_order)
 
     if not history:
         st.write("No analyses found.")
     else:
+        st.caption(f"Showing {len(history)} record(s)")
         for item in history:
             with st.expander(item["input_text"][:80] + "..." if len(item["input_text"]) > 80 else item["input_text"]):
                 st.write("**Timestamp:** " + item["timestamp"])
@@ -89,7 +94,7 @@ with tab2:
             writer.writerow([item["timestamp"], item["input_text"], item["summary"], item["steelman"]])
 
         st.download_button(
-            label="Download History as CSV",
+            label="Download Filtered History as CSV",
             data=csv_buffer.getvalue(),
             file_name="clarity_lens_history.csv",
             mime="text/csv"
