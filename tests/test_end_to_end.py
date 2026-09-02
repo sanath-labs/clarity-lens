@@ -79,3 +79,20 @@ def test_search_analyses():
     results = search_analyses("xyz123")
     assert len(results) >= 1
     assert "xyz123" in results[0]["input_text"]
+
+def test_get_analyses_filtered_sort_and_search():
+    from database import init_db, save_analysis, get_analyses_filtered
+    init_db()
+    save_analysis("Alpha test query item", [], "Summary A", "Steelman A")
+    save_analysis("Beta test query item", [], "Summary B", "Steelman B")
+    
+    # Test keyword matching
+    matches = get_analyses_filtered(keyword="Alpha")
+    assert any("Alpha" in m["input_text"] for m in matches)
+    
+    # Test sort ordering
+    desc_results = get_analyses_filtered(sort_order="DESC")
+    asc_results = get_analyses_filtered(sort_order="ASC")
+    if len(desc_results) >= 2:
+        assert desc_results[0]["timestamp"] >= desc_results[-1]["timestamp"]
+        assert asc_results[0]["timestamp"] <= asc_results[-1]["timestamp"]
