@@ -216,3 +216,34 @@ def search_analyses(keyword: str) -> list:
             "steelman": row[5],
         })
     return results
+
+def get_analyses_filtered(keyword: str = "", sort_order: str = "DESC") -> list:
+    """
+    Returns analyses filtered by an optional keyword and sorted by timestamp.
+    sort_order must be either 'ASC' or 'DESC'.
+    """
+    order = "ASC" if sort_order.upper() == "ASC" else "DESC"
+    conn = sqlite3.connect(DB_PATH)
+    cursor = conn.cursor()
+    
+    if keyword.strip():
+        query = f"SELECT id, input_text, timestamp, flags_json, summary, steelman FROM analyses WHERE input_text LIKE ? ORDER BY timestamp {order}"
+        cursor.execute(query, ("%" + keyword.strip() + "%",))
+    else:
+        query = f"SELECT id, input_text, timestamp, flags_json, summary, steelman FROM analyses ORDER BY timestamp {order}"
+        cursor.execute(query)
+        
+    rows = cursor.fetchall()
+    conn.close()
+    
+    results = []
+    for row in rows:
+        results.append({
+            "id": row[0],
+            "input_text": row[1],
+            "timestamp": row[2],
+            "flags": json.loads(row[3]) if row[3] else [],
+            "summary": row[4],
+            "steelman": row[5],
+        })
+    return results
