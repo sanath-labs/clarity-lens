@@ -63,3 +63,7 @@ Added search functionality and per-entry delete buttons to the History tab, back
 
 ### Day 17
 Implemented dynamic sort ordering (newest/oldest) and multi-filter querying in the database layer and History tab, with comprehensive unit tests.
+
+### Day 18
+Added handling for overly long text input (over 2000 words) - the app now warns the user and truncates to the first 2000 words for analysis, preventing slowdowns and LLM context issues. Added corresponding unit tests.
+
