@@ -1,7 +1,7 @@
 import streamlit as st
 import csv
 import io
-from nlp_utils import split_sentences, is_valid_input, is_sufficient_for_decision, is_too_long, truncate_text
+from nlp_utils import split_sentences, is_valid_input, is_sufficient_for_decision, is_too_long, truncate_text, get_text_metrics
 from flag_detector import analyze_sentence
 from ui_helpers import format_sentence_with_flags
 from llm_utils import get_neutral_summary, get_steelman_argument, get_socratic_questions
@@ -25,6 +25,12 @@ with tab1:
                     st.info("Your text is quite long — analyzing the first 2000 words for best performance.")
                     user_input = truncate_text(user_input)
                 sentences = split_sentences(user_input)
+                metrics = get_text_metrics(user_input)
+                metric_columns = st.columns(4)
+                metric_columns[0].metric("Words", metrics["words"])
+                metric_columns[1].metric("Characters", metrics["chars"])
+                metric_columns[2].metric("Sentences", metrics["sentences"])
+                metric_columns[3].metric("Reading time", f"{metrics['reading_time_min']} min")
                 st.subheader("Found " + str(len(sentences)) + " sentence(s):")
                 legend = "<p><span style='background-color:#ffcccc;padding:2px 6px;border-radius:4px;'>Absolute language</span> "
                 legend += "<span style='background-color:#ffe4b3;padding:2px 6px;border-radius:4px;'>Emotional language</span> "
