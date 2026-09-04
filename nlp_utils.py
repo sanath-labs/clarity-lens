@@ -46,3 +46,21 @@ def truncate_text(text: str, max_words: int = MAX_WORD_COUNT) -> str:
     if len(words) <= max_words:
         return text
     return " ".join(words[:max_words])
+
+def get_text_metrics(text: str) -> dict:
+    """
+    Computes text statistics including word count, character count,
+    sentence count, and estimated reading time in minutes.
+    """
+    if not text or not text.strip():
+        return {"words": 0, "chars": 0, "sentences": 0, "reading_time_min": 0.0}
+    words = text.strip().split()
+    sentences = split_sentences(text)
+    word_count = len(words)
+    reading_time = round(word_count / 200, 1)
+    return {
+        "words": word_count,
+        "chars": len(text),
+        "sentences": len(sentences),
+        "reading_time_min": reading_time,
+    }
