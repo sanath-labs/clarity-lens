@@ -22,3 +22,22 @@ def format_sentence_with_flags(sentence, flags):
         badges_html = "<span style='color:gray;'>No flags detected</span>"
 
     return "<p>" + sentence + "</p><div>" + badges_html + "</div><hr>"
+
+def render_flag_badges(counts: dict) -> str:
+    """
+    Renders styled HTML metric badges for flag totals.
+    """
+    total = counts.get("total_flags", 0)
+    abs_count = counts.get("absolute_language", 0)
+    emo_count = counts.get("emotional_language", 0)
+    src_count = counts.get("missing_source", 0)
+
+    html = f"""
+    <div style='display: flex; gap: 10px; margin: 10px 0;'>
+        <span style='background-color:#ffebee; color:#c62828; padding: 4px 8px; border-radius: 4px; font-weight: bold;'>Total Flags: {total}</span>
+        <span style='background-color:#ffcccc; padding: 4px 8px; border-radius: 4px;'>Absolute: {abs_count}</span>
+        <span style='background-color:#ffe4b3; padding: 4px 8px; border-radius: 4px;'>Emotional: {emo_count}</span>
+        <span style='background-color:#cce5ff; padding: 4px 8px; border-radius: 4px;'>Missing Source: {src_count}</span>
+    </div>
+    """
+    return html.strip()
