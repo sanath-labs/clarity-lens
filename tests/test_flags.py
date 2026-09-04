@@ -37,3 +37,22 @@ if __name__ == "__main__":
 def test_missing_source_negated_citation():
     result = detect_missing_source("Studies show huge gains, though no source is cited.")
     assert result == True
+
+def test_summarize_flags_empty():
+    from flag_detector import summarize_flags
+    summary = summarize_flags([])
+    assert summary["total_flags"] == 0
+    assert summary["absolute_language"] == 0
+
+def test_summarize_flags_counts():
+    from flag_detector import summarize_flags
+    mock_data = [
+        {"flags": ["absolute_language", "emotional_language"]},
+        {"flags": ["missing_source"]},
+        {"flags": ["absolute_language"]},
+    ]
+    summary = summarize_flags(mock_data)
+    assert summary["total_flags"] == 4
+    assert summary["absolute_language"] == 2
+    assert summary["emotional_language"] == 1
+    assert summary["missing_source"] == 1
