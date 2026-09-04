@@ -31,3 +31,17 @@ def test_truncate_text():
     long_text = "word " * 2500
     result = truncate_text(long_text)
     assert len(result.split()) == 2000
+
+def test_get_text_metrics_empty():
+    from nlp_utils import get_text_metrics
+    result = get_text_metrics("")
+    assert result["words"] == 0
+    assert result["reading_time_min"] == 0.0
+
+def test_get_text_metrics_populated():
+    from nlp_utils import get_text_metrics
+    sample = "This is a simple sentence. Here is another sentence."
+    result = get_text_metrics(sample)
+    assert result["words"] == 9
+    assert result["sentences"] == 2
+    assert result["chars"] == len(sample)
