@@ -68,5 +68,5 @@ Implemented dynamic sort ordering (newest/oldest) and multi-filter querying in t
 Added handling for overly long text input (over 2000 words) - the app now warns the user and truncates to the first 2000 words for analysis, preventing slowdowns and LLM context issues. Added corresponding unit tests.
 
 ### Day 19
-Added text analytics metrics (word count, sentence count, estimated reading time) with unit tests and UI metrics badges.
+Added text analytics metrics (word count, sentence count, estimated reading time) with unit tests and UI metrics badges. Added language detection using langdetect - the app now warns users if their input may not be English, since analysis is optimized for English text, while still allowing the analysis to proceed. Added corresponding unit tests.
 
