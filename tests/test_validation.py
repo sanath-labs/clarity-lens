@@ -45,3 +45,8 @@ def test_get_text_metrics_populated():
     assert result["words"] == 9
     assert result["sentences"] == 2
     assert result["chars"] == len(sample)
+
+def test_is_likely_english():
+    from nlp_utils import is_likely_english
+    assert is_likely_english("This is a clearly English sentence about testing.") == True
+    assert is_likely_english("Esto es una oracion claramente en espanol sobre pruebas.") == False
