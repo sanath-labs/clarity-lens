@@ -64,3 +64,16 @@ def get_text_metrics(text: str) -> dict:
         "sentences": len(sentences),
         "reading_time_min": reading_time,
     }
+
+def is_likely_english(text: str) -> bool:
+    """
+    Returns True if the text is detected as English, False otherwise.
+    Returns True by default if detection fails on very short/ambiguous text,
+    to avoid blocking valid short English input.
+    """
+    from langdetect import LangDetectException, detect
+
+    try:
+        return detect(text) == "en"
+    except LangDetectException:
+        return True
