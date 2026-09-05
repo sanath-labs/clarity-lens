@@ -1,7 +1,7 @@
 import streamlit as st
 import csv
 import io
-from nlp_utils import split_sentences, is_valid_input, is_sufficient_for_decision, is_too_long, truncate_text, get_text_metrics
+from nlp_utils import split_sentences, is_valid_input, is_sufficient_for_decision, is_too_long, truncate_text, get_text_metrics, is_likely_english
 from flag_detector import analyze_sentence
 from ui_helpers import format_sentence_with_flags
 from llm_utils import get_neutral_summary, get_steelman_argument, get_socratic_questions
@@ -21,6 +21,8 @@ with tab1:
         user_input = st.text_area("Enter text to analyze:", height=200)
         if st.button("Analyze"):
             if is_valid_input(user_input):
+                if not is_likely_english(user_input):
+                    st.warning("This text may not be in English. Analysis is optimized for English text and results may be less accurate.")
                 if is_too_long(user_input):
                     st.info("Your text is quite long — analyzing the first 2000 words for best performance.")
                     user_input = truncate_text(user_input)
