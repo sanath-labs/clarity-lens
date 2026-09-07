@@ -74,3 +74,6 @@ Added text analytics metrics (word count, sentence count, estimated reading time
 ### Day 20 (brief)
 Added academic notice and license file. Full feature work resumes next session.
 
+### Day 21 (brief)
+Added PROJECT_SCOPE.md, FAQ.md, and CHANGELOG.md for clearer project documentation ahead of final report writing.
+

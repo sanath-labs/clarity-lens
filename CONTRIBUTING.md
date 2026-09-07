@@ -15,3 +15,6 @@ if the project opens up to collaborators.
 - Add docstrings to all functions
 - Add type hints where practical
 - Write tests for new logic in the tests/ folder
+
+## Formatting
+This project uses .editorconfig and .gitattributes for consistent formatting across editors and operating systems.
