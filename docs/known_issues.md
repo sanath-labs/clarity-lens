@@ -24,3 +24,7 @@ Ran complete test suite via pytest: 14/14 tests passed across test_flags.py, tes
 ## Resolved (Day 15)
 The missing-source false positive for negated citations (e.g. 'no source is cited') has been fixed. The detector now checks for negation words within 15 characters before a source-attribution word before treating it as a real citation.
 
+
+## Tuning: context-dependent emotional words (Day 21)
+Words like 'incredible' and 'unbelievable' can appear in genuinely neutral/technical contexts (e.g. 'an incredible amount of data'). These are now only flagged in shorter sentences (under 12 words), where they are more likely to be used rhetorically rather than descriptively. This is a heuristic, not perfect - documented as a design tradeoff for the viva.
+
