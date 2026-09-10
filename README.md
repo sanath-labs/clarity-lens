@@ -77,3 +77,7 @@ Added academic notice and license file. Full feature work resumes next session.
 ### Day 21 (brief)
 Added PROJECT_SCOPE.md, FAQ.md, and CHANGELOG.md for clearer project documentation ahead of final report writing.
 
+
+### Day 21
+Tuned the emotional language detector to reduce false positives on context-dependent words (incredible, unbelievable) in longer, more technical sentences. Added regression tests and documented the tradeoff.
+
