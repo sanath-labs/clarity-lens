@@ -56,3 +56,13 @@ def test_summarize_flags_counts():
     assert summary["absolute_language"] == 2
     assert summary["emotional_language"] == 1
     assert summary["missing_source"] == 1
+
+def test_context_dependent_word_not_flagged_in_long_sentence():
+    long_sentence = "The dataset contains an incredible amount of information collected over several years of careful research and analysis."
+    result = detect_emotional_language(long_sentence)
+    assert "incredible" not in result
+
+def test_context_dependent_word_flagged_in_short_sentence():
+    short_sentence = "That is an incredible lie."
+    result = detect_emotional_language(short_sentence)
+    assert "incredible" in result
