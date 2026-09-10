@@ -10,15 +10,31 @@ EMOTIONAL_WORDS = [
     "devastating", "incredible", "insane", "ridiculous"
 ]
 
+# Words that are technically in EMOTIONAL_WORDS but common in neutral,
+# technical, or quantitative contexts - flagged with lower confidence
+CONTEXT_DEPENDENT_WORDS = ["incredible", "unbelievable"]
+
 def detect_absolute_language(sentence: str) -> list:
     """Scans a sentence for absolute/all-or-nothing language."""
     lower = sentence.lower()
     return [word for word in ABSOLUTE_WORDS if word in lower]
 
 def detect_emotional_language(sentence: str) -> list:
-    """Scans a sentence for emotionally loaded/inflammatory language."""
+    """
+    Scans a sentence for emotionally loaded/inflammatory language.
+    Words in CONTEXT_DEPENDENT_WORDS are only flagged if the sentence
+    is short (under 12 words), since longer, more detailed sentences
+    tend to use them in genuinely neutral/technical contexts.
+    """
     lower = sentence.lower()
-    return [word for word in EMOTIONAL_WORDS if word in lower]
+    word_count = len(sentence.split())
+    matches = []
+    for word in EMOTIONAL_WORDS:
+        if word in lower:
+            if word in CONTEXT_DEPENDENT_WORDS and word_count > 12:
+                continue
+            matches.append(word)
+    return matches
 
 def detect_missing_source(sentence: str) -> bool:
     """
@@ -29,6 +45,7 @@ def detect_missing_source(sentence: str) -> bool:
     lower = sentence.lower()
     has_stat = bool(re.search(r"\d+%|\d+\s*(percent|times|studies)", lower))
     has_claim_word = any(w in lower for w in ["studies show", "research shows", "experts say", "proven"])
+
     source_words = ["according to", "source:", "cited", "published in"]
     negation_words = ["no ", "not ", "without ", "n't "]
 
@@ -55,22 +72,3 @@ def analyze_sentence(sentence: str) -> dict:
         "emotional_language": detect_emotional_language(sentence),
         "missing_source": detect_missing_source(sentence),
     }
-
-def summarize_flags(flag_results: list) -> dict:
-    """
-    Takes a list of sentence analysis results and computes total counts
-    for each flag category.
-    """
-    counts = {
-        "absolute_language": 0,
-        "emotional_language": 0,
-        "missing_source": 0,
-        "total_flags": 0,
-    }
-    for item in flag_results:
-        flags = item.get("flags", [])
-        for flag in flags:
-            if flag in counts:
-                counts[flag] += 1
-                counts["total_flags"] += 1
-    return counts
