@@ -4,9 +4,22 @@ from groq import Groq
 
 load_dotenv()
 
-api_key = os.environ.get("GROQ_API_KEY")
-client = Groq(api_key=api_key) if api_key else None
+def _get_api_key():
+    """
+    Checks for the Groq API key in this order: Streamlit secrets (for
+    cloud deployment), then environment variables / .env file (for
+    local development).
+    """
+    try:
+        import streamlit as st
+        if "GROQ_API_KEY" in st.secrets:
+            return st.secrets["GROQ_API_KEY"]
+    except Exception:
+        pass
+    return os.environ.get("GROQ_API_KEY")
 
+api_key = _get_api_key()
+client = Groq(api_key=api_key) if api_key else None
 
 def get_neutral_summary(text: str) -> str:
     """
@@ -27,8 +40,7 @@ def get_neutral_summary(text: str) -> str:
         )
         return response.choices[0].message.content
     except Exception as e:
-        return "Could not generate summary (API error: " + str(e) + ")"
-
+        return "Could not generate summary (API error: " + str(e) + " )"
 
 def get_steelman_argument(text: str) -> str:
     """
@@ -51,12 +63,10 @@ def get_steelman_argument(text: str) -> str:
     except Exception as e:
         return "Could not generate opposing viewpoint (API error: " + str(e) + ")"
 
-
 def get_socratic_questions(decision_text: str) -> str:
     """
     Uses an LLM to generate 3-4 Socratic follow-up questions that help the
-    user examine their own decision-making reasoning, rather than giving
-    them a direct answer or verdict.
+    user examine their own decision-making reasoning.
     """
     if not client:
         return "AI questions unavailable: no API key configured yet."
