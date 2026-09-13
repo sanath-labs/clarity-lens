@@ -1,9 +1,16 @@
 # ClarityLens
 
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-Streamlit%20Community%20Cloud-FF4B4B)](https://clarity-lens.streamlit.app)
+
 An AI-assisted critical thinking tool. ClarityLens breaks down text or personal
 decisions into individual claims, flags reasoning red flags (loaded language,
 absolute claims, missing sources), and generates the strongest opposing
 viewpoint - helping users think more clearly rather than just consume a verdict.
+
+## Live Demo
+
+ClarityLens is deployed live on Streamlit Community Cloud:
+https://clarity-lens.streamlit.app
 
 ## Status
 Under active development.
@@ -77,7 +84,17 @@ Added academic notice and license file. Full feature work resumes next session.
 ### Day 21 (brief)
 Added PROJECT_SCOPE.md, FAQ.md, and CHANGELOG.md for clearer project documentation ahead of final report writing.
 
+### Day 22 (deployed)
+App successfully deployed live on Streamlit Community Cloud. Live demo: https://clarity-lens.streamlit.app
+
+### Day 23
+Tested the Streamlit Community Cloud deployment end-to-end. History is backed by a local SQLite database file, but the Cloud filesystem is ephemeral, so saved history may not persist across sessions or app restarts. The documented deployment limitation is therefore an expected behavior of the free-tier public demo.
+
 
 ### Day 21
 Tuned the emotional language detector to reduce false positives on context-dependent words (incredible, unbelievable) in longer, more technical sentences. Added regression tests and documented the tradeoff.
+
+
+### Day 24
+Added full architecture documentation (docs/architecture.md) covering data flow, module responsibilities, and design rationale, plus a visual architecture diagram.
 
