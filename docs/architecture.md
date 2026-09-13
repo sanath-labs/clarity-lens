@@ -67,3 +67,7 @@ tasks that cannot be done reliably with simple pattern matching.
 
 ## Visual Diagram
 ![Architecture Diagram](architecture-diagram.png)
+
+## Visual Diagram
+![Architecture Diagram](architecture-diagram.png)
+
