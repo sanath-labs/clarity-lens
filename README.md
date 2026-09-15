@@ -104,3 +104,6 @@ Added full architecture documentation (docs/architecture.md) covering data flow,
 - [Known Issues](docs/known_issues.md) - documented limitations and resolved bugs
 - [Viva Prep](docs/viva_prep.md) - anticipated questions and answers
 
+### Day 25
+Added methodology documentation explaining the academic rationale behind each flag category and the hybrid rule-based/generative architecture, plus a viva preparation document covering anticipated examiner questions.
+
