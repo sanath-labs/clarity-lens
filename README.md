@@ -98,3 +98,9 @@ Tuned the emotional language detector to reduce false positives on context-depen
 ### Day 24
 Added full architecture documentation (docs/architecture.md) covering data flow, module responsibilities, and design rationale, plus a visual architecture diagram.
 
+## Documentation
+- [Architecture](docs/architecture.md) - system design and data flow
+- [Methodology](docs/methodology.md) - rationale behind flag categories and design choices
+- [Known Issues](docs/known_issues.md) - documented limitations and resolved bugs
+- [Viva Prep](docs/viva_prep.md) - anticipated questions and answers
+
