@@ -152,4 +152,7 @@ Added full architecture documentation (docs/architecture.md) covering data flow,
 ### Day 25
 Added methodology documentation explaining the academic rationale behind each flag category and the hybrid rule-based/generative architecture, plus a viva preparation document.
 
+### Day 26
+Restructured the README into a portfolio-ready format with feature highlights, tech stack, setup instructions, and a documentation index near the top. Fixed a duplicate Day 21 entry.
+
 
