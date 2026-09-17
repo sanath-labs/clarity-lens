@@ -155,4 +155,7 @@ Added methodology documentation explaining the academic rationale behind each fl
 ### Day 26
 Restructured the README into a portfolio-ready format with feature highlights, tech stack, setup instructions, and a documentation index near the top. Fixed a duplicate Day 21 entry.
 
+### Day 27
+Started the formal project report - added Introduction, Problem Statement, and Literature Review sections under docs/report/. Performed a code cleanup pass on app.py.
+
 

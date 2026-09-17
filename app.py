@@ -5,7 +5,7 @@ from nlp_utils import split_sentences, is_valid_input, is_sufficient_for_decisio
 from flag_detector import analyze_sentence
 from ui_helpers import format_sentence_with_flags
 from llm_utils import get_neutral_summary, get_steelman_argument, get_socratic_questions
-from database import init_db, save_analysis, get_all_analyses, clear_all_analyses, delete_analysis, search_analyses, get_analyses_filtered
+from database import init_db, save_analysis, clear_all_analyses, delete_analysis, get_analyses_filtered
 
 init_db()
 
