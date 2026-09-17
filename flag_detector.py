@@ -72,3 +72,29 @@ def analyze_sentence(sentence: str) -> dict:
         "emotional_language": detect_emotional_language(sentence),
         "missing_source": detect_missing_source(sentence),
     }
+
+
+def summarize_flags(results: list[dict]) -> dict:
+    """
+    Sum a list of analysis result records into a per-flag count summary.
+
+    Each record is expected to look like:
+        {"flags": ["absolute_language", "emotional_language"]}
+
+    Returns a dictionary with a total and a count for each supported flag type.
+    """
+    summary = {
+        "total_flags": 0,
+        "absolute_language": 0,
+        "emotional_language": 0,
+        "missing_source": 0,
+    }
+
+    for result in results:
+        flags = result.get("flags", []) if isinstance(result, dict) else []
+        for flag in flags:
+            if flag in summary:
+                summary[flag] += 1
+                summary["total_flags"] += 1
+
+    return summary
