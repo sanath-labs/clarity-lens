@@ -159,3 +159,7 @@ Restructured the README into a portfolio-ready format with feature highlights, t
 Started the formal project report - added Introduction, Problem Statement, and Literature Review sections under docs/report/. Performed a code cleanup pass on app.py.
 
 
+
+### Day 27
+Added report Introduction and Literature Review sections under docs/report/. Conducted a code review of app.py - confirmed all imports are in active use with no dead code. Cleaned up 3 accidental empty commits from git history via reset and force-push to keep the commit log honest.
+
