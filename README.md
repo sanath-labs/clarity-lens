@@ -164,3 +164,7 @@ Started the formal project report - added Introduction, Problem Statement, and L
 ### Day 28
 Added System Design section to the report, covering design principles, database schema, and testing strategy. Proofread the methodology documentation for wording and formatting issues and tightened the narrative for clarity.
 
+
+### Day 29
+Completed the written project report - added Results and Conclusion/Future Scope sections, plus an index linking all report sections and supporting documentation.
+
