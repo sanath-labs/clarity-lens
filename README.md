@@ -73,6 +73,9 @@ Final-year Information Science capstone project. Deployed and functional,
 with 32 automated tests passing via continuous integration.
 See [ACADEMIC_NOTICE.md](ACADEMIC_NOTICE.md) for intended-use notes.
 
+Repository sync check: local main is aligned with the remote GitHub repository
+and the project history is being verified through a normal commit/push workflow.
+
 ---
 
 ## Progress Log
@@ -158,8 +161,6 @@ Restructured the README into a portfolio-ready format with feature highlights, t
 ### Day 27
 Started the formal project report - added Introduction, Problem Statement, and Literature Review sections under docs/report/. Performed a code cleanup pass on app.py.
 
-
-
-### Day 27
-Added report Introduction and Literature Review sections under docs/report/. Conducted a code review of app.py - confirmed all imports are in active use with no dead code. Cleaned up 3 accidental empty commits from git history via reset and force-push to keep the commit log honest.
+### Day 28
+Added System Design section to the report, covering design principles, database schema, and testing strategy. Proofread the methodology documentation for wording and formatting issues and tightened the narrative for clarity.
 
