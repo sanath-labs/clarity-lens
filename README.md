@@ -168,3 +168,7 @@ Added System Design section to the report, covering design principles, database 
 ### Day 29
 Completed the written project report - added Results and Conclusion/Future Scope sections, plus an index linking all report sections and supporting documentation.
 
+
+### Day 30
+Created presentation outline and live demo script for the viva. PowerPoint slide deck to follow.
+
