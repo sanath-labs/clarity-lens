@@ -28,7 +28,7 @@ accepted as tradeoffs (English-only support, ephemeral cloud storage).
 
 ## 5.3 Future Scope
 
-- Fine-tune a lightweight classifier on labelled bias/fallacy data to
+- Fine-tune a lightweight classifier on labeled bias/fallacy data to
   reduce keyword-matching false positives/negatives
 - Add multilingual support via multilingual sentence embeddings
 - Self-host an open-source LLM to remove third-party API dependency for
