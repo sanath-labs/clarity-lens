@@ -1,6 +1,14 @@
+import nltk
+
+try:
+    nltk.data.find("tokenizers/punkt_tab")
+except LookupError:
+    nltk.download("punkt_tab")
+
 from nltk.tokenize import sent_tokenize
 
 MAX_WORD_COUNT = 2000
+
 
 def split_sentences(text: str) -> list:
     """
@@ -11,6 +19,7 @@ def split_sentences(text: str) -> list:
         return []
     return sent_tokenize(text.strip())
 
+
 def is_valid_input(text: str) -> bool:
     """
     Returns False for empty, whitespace-only, or punctuation/symbol-only text.
@@ -19,6 +28,7 @@ def is_valid_input(text: str) -> bool:
     if not text or not text.strip():
         return False
     return any(c.isalnum() for c in text)
+
 
 def is_sufficient_for_decision(text: str) -> bool:
     """
@@ -29,6 +39,7 @@ def is_sufficient_for_decision(text: str) -> bool:
         return False
     return len(text.strip().split()) >= 5
 
+
 def is_too_long(text: str) -> bool:
     """
     Returns True if the input exceeds MAX_WORD_COUNT words, which may
@@ -38,6 +49,7 @@ def is_too_long(text: str) -> bool:
         return False
     return len(text.strip().split()) > MAX_WORD_COUNT
 
+
 def truncate_text(text: str, max_words: int = MAX_WORD_COUNT) -> str:
     """
     Truncates text to at most max_words words, preserving whole words.
@@ -46,6 +58,7 @@ def truncate_text(text: str, max_words: int = MAX_WORD_COUNT) -> str:
     if len(words) <= max_words:
         return text
     return " ".join(words[:max_words])
+
 
 def get_text_metrics(text: str) -> dict:
     """
@@ -64,6 +77,7 @@ def get_text_metrics(text: str) -> dict:
         "sentences": len(sentences),
         "reading_time_min": reading_time,
     }
+
 
 def is_likely_english(text: str) -> bool:
     """
