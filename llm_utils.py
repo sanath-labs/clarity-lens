@@ -30,7 +30,7 @@ def get_neutral_summary(text: str) -> str:
         return "AI summary unavailable: no API key configured yet."
     try:
         response = client.chat.completions.create(
-            model="llama-3.1-8b-instant",
+            model="openai/gpt-oss-20b",
             messages=[
                 {
                     "role": "user",
@@ -51,7 +51,7 @@ def get_steelman_argument(text: str) -> str:
         return "AI opposing viewpoint unavailable: no API key configured yet."
     try:
         response = client.chat.completions.create(
-            model="llama-3.1-8b-instant",
+            model="openai/gpt-oss-20b",
             messages=[
                 {
                     "role": "user",
@@ -72,7 +72,7 @@ def get_socratic_questions(decision_text: str) -> str:
         return "AI questions unavailable: no API key configured yet."
     try:
         response = client.chat.completions.create(
-            model="llama-3.1-8b-instant",
+            model="openai/gpt-oss-20b",
             messages=[
                 {
                     "role": "user",
