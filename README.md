@@ -184,3 +184,6 @@ Proofread the Results and Conclusion report sections. Skipped a separate demo vi
 ### Day 33
 Completed a full live rehearsal of the demo script and practiced viva Q&A out loud. Added a submission checklist tracking final readiness.
 
+### Day 34
+Fixed three issues found during live deployment testing: incompatible pinned dependencies that prevented installation on Streamlit Cloud's Python 3.11 runtime, missing NLTK punkt_tab data on a fresh cloud environment, and the unavailable llama-3.1-8b-instant Groq model. Updated the Groq calls to openai/gpt-oss-20b. Verified the live app produces AI-generated neutral summaries and steelman arguments, and all 32 tests pass.
+
